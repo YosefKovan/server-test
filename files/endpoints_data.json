@@ -1,0 +1,42 @@
+[
+    {
+        "url": "/test",
+        "method": "GET",
+        "stats": {
+            "total_requests_received": 3,
+            "avg_handling_time": 0
+        }
+    },
+    {
+        "url": "/test/{name}",
+        "method": "GET",
+        "stats": {
+            "total_requests_received": 0,
+            "avg_handling_time": 0
+        }
+    },
+    {
+        "url": "/caesar",
+        "method": "POST",
+        "stats": {
+            "total_requests_received": 22,
+            "avg_handling_time": 0
+        }
+    },
+    {
+        "url": "/fence/encrypt",
+        "method": "GET",
+        "stats": {
+            "total_requests_received": 1,
+            "avg_handling_time": 0
+        }
+    },
+    {
+        "url": "/fence/encrypt",
+        "method": "POST",
+        "stats": {
+            "total_requests_received": 0,
+            "avg_handling_time": 0
+        }
+    }
+]

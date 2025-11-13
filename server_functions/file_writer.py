@@ -20,19 +20,23 @@ def find_obj(key, value, json_content):
 
 def endpoint_increment_total_request(url, method):
 
-    with open("../files/endpoints_data.json", 'r+') as f:
+    with open("./files/endpoints_data.json", 'r+') as f:
         json_data = json.loads(f.read())
         obj = find_obj('url', url, json_data)
         obj["stats"]["total_requests_received"] += 1
-        f.write(json.dumps(json_data))
+        f.seek(0)
+        f.write(json.dumps(json_data, indent=4))
 
 
 def endpoint_avg_handling_time(url, time):
 
-    with open("../files/endpoints_data.json", 'r+') as f:
+    with open("./files/endpoints_data.json", 'r+') as f:
         json_data = json.loads(f.read())
-        obj = find_obj('url', url, json_data)
-        obj["stats"]["avg_handling_time"] = time
+        json_data = find_obj('url', url, json_data)
+        json_data["stats"]["avg_handling_time"] = time
+        f.seek(0)
+        f.write(json.dumps(json_data))
+
 
 
 def update_summary_json():
@@ -45,4 +49,14 @@ def update_summary_json():
 
     for obj in data:
         if obj["stats"]["total_requests_received"] > summary_json["highest_requests"]["number"]:
-            summary_json["highest_requests"]["number"] = {"name" : obj["stats"]}
+            summary_json["highest_requests"]["number"] = {"name" : obj["url"] + " " + obj["method"],
+                                                          "number" : obj["stats"]["total_requests_received"]}
+        if obj["stats"]["total_requests_received"] < summary_json["lowest_requests"]["number"]:
+            summary_json["lowest_requests"]["number"] = {"name" : obj["url"] + " " + obj["method"],
+                                                         "number" : obj["stats"]["total_requests_received"]}
+        if obj["stats"]["avg_handling_time"] > summary_json["highest_avg_handling_time"]["number"]:
+            summary_json["highest_handling_time"]["number"] = {"name": obj["url"] + " " + obj["method"],
+                                                               "number": obj["stats"]["total_requests_received"]}
+        if obj["stats"]["avg_handling_time"] < summary_json["lowest_avg_handling_time"]["number"]:
+            summary_json["lowest_avg_handling_time"]["number"] = {"name": obj["url"] + " " + obj["method"],
+                                                               "number": obj["stats"]["total_requests_received"]}

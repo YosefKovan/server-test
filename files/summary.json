@@ -1,0 +1,18 @@
+{
+  "highest_requests": {
+    "name": "",
+    "number": 0
+  },
+  "lowest_requests": {
+    "name": "",
+    "number": 0
+  },
+  "highest_handling_time": {
+    "name": "",
+    "number": 0
+  },
+  "lowest_handling_time": {
+    "name": "",
+    "number": 0
+  }
+}

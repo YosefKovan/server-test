@@ -7,11 +7,13 @@ def encrypt_caesar(data):
 
     for letter in data.text:
 
-        if letter.isalpha():
+        if letter.isalpha() or letter == " ":
             if letter.islower():
                 r = ((ord(letter) + data.offset) - ord('a')) % 26 + ord('a')
-            else:
+            elif letter.isupper():
                 r = ((ord(letter) + data.offset) - ord('A')) % 26 + ord('A')
+            else:
+                r = ord(" ")
 
             encrypted_text += chr(r)
 
@@ -20,7 +22,21 @@ def encrypt_caesar(data):
 
 def decrypt_caesar(data):
 
+    decrypted_text = ""
 
+    for letter in data.text:
+
+        if letter.isalpha() or letter == " ":
+            if letter.islower():
+                r = ((ord(letter) - data.offset) - ord('a') + 26) % 26 + ord('a')
+            elif letter.isupper():
+                r = ((ord(letter) - data.offset) - ord('A') + 26) % 26 + ord('A')
+            else:
+                r = ord(" ")
+
+            decrypted_text += chr(r)
+
+    return {"decrypted_text": decrypted_text}
 
 
 def decrypt_fence_cipher(data):
