@@ -4,7 +4,6 @@ from server_functions.file_writer import write_name
 from pydantic import BaseModel
 from server_functions.encryption import *
 from server_functions.file_writer import *
-from datetime import time
 
 
 class Caesar(BaseModel):

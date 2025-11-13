@@ -38,7 +38,6 @@ def endpoint_avg_handling_time(url, time):
         f.write(json.dumps(json_data))
 
 
-
 def update_summary_json():
 
     data = read_file_content('endpoints_data.json')
